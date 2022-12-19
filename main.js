@@ -60,7 +60,7 @@ async function GetDelistTokens() {
                tokens.push(...block_pairs);
             }
 			
-			if (article.title.toLowerCase().includes("binance margin will delist")) {
+	    if (article.title.toLowerCase().includes("binance margin will delist")) {
                // console.log(`${catalog.catalogName}: ${article.title}`);
                let article_tokens = article.title.toUpperCase().split("BINANCE MARGIN WILL DELIST")[1].split(" ON ")[0].replace("AND", ",").split(/,|&/).map(elem => elem.trim());
 			   
