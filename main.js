@@ -52,7 +52,7 @@ async function GetDelistTokens() {
 			   
 			   let block_pairs = [];
 			   for (let i = 0; i < article_tokens.length; i++) {
-					if(article_tokens[i] && article_tokens[i].length < 5){
+					if(article_tokens[i] && article_tokens[i].length <= 5){
 						console.log(`GetDelistToken() -> push: ${article_tokens[i]}`);
 						block_pairs.push(article_tokens[i]);
 					}
