@@ -48,8 +48,30 @@ async function GetDelistTokens() {
             let article = catalog.articles[j];
             if (article.title.toLowerCase().includes("binance will delist")) {
                // console.log(`${catalog.catalogName}: ${article.title}`);
-               let article_tokens = article.title.toUpperCase().split("BINANCE WILL DELIST")[1].split(" ON ")[0].split(/,|&/).map(elem => elem.trim());
-               tokens.push(...article_tokens);
+               let article_tokens = article.title.toUpperCase().split("BINANCE WILL DELIST")[1].split(" ON ")[0].replace("AND", ",").split(/,|&/).map(elem => elem.trim());
+			   
+			   let block_pairs = [];
+			   for (let i = 0; i < article_tokens.length; i++) {
+					if(article_tokens[i] && article_tokens[i].length < 5){
+						console.log(`GetDelistToken() -> push: ${article_tokens[i]}`);
+						block_pairs.push(article_tokens[i]);
+					}
+			   }
+               tokens.push(...block_pairs);
+            }
+			
+			if (article.title.toLowerCase().includes("binance margin will delist")) {
+               // console.log(`${catalog.catalogName}: ${article.title}`);
+               let article_tokens = article.title.toUpperCase().split("BINANCE MARGIN WILL DELIST")[1].split(" ON ")[0].replace("AND", ",").split(/,|&/).map(elem => elem.trim());
+			   
+			   let block_pairs = [];
+			   for (let i = 0; i < article_tokens.length; i++) {
+					if(article_tokens[i] && article_tokens[i].length < 5){
+						console.log(`GetDelistToken() -> push: ${article_tokens[i]}`);
+						block_pairs.push(article_tokens[i]);
+					}
+			   }
+               tokens.push(...block_pairs);
             }
          }
       }
