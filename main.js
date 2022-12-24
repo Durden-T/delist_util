@@ -45,34 +45,99 @@ async function GetDelistTokens() {
       for (let i = 0; i < catalogs.length; i++) {
          let catalog = catalogs[i];
          for (let j = 0; j < catalog.articles.length; j++) {
+            // Get titile content
             let article = catalog.articles[j];
+
+            // Binance Will Delist...
             if (article.title.toLowerCase().includes("binance will delist")) {
-               // console.log(`${catalog.catalogName}: ${article.title}`);
-               let article_tokens = article.title.toUpperCase().split("BINANCE WILL DELIST")[1].split(" ON ")[0].replace("AND", ",").split(/,|&/).map(elem => elem.trim());
+               // Split then map elements
+               let article_tokens = article.title.replaceAll("USDⓈ-M", " ")
+                                                .replaceAll("COIN-M", " ")
+                                                .split(/[ ,&]+/).map(elem => elem.trim());
 			   
-			   let block_pairs = [];
-			   for (let i = 0; i < article_tokens.length; i++) {
-					if(article_tokens[i] && article_tokens[i].length <= 5){
-						console.log(`GetDelistToken() -> push: ${article_tokens[i]}`);
-						block_pairs.push(article_tokens[i]);
-					}
-			   }
+               let block_pairs = [];
+               for (let i = 0; i < article_tokens.length; i++) {
+                  if(article_tokens[i] && article_tokens[i].length > 1){
+                     let token = article_tokens[i];
+                     // The UpperCase is the delist token
+                     if (token.toUpperCase() === token && token !== token.toLowerCase()) {
+                        console.log(`GetDelistToken() -> Push: ${token}`);
+                        block_pairs.push(token);
+                     }                      
+                  }
+               }
                tokens.push(...block_pairs);
             }
-			
-	    if (article.title.toLowerCase().includes("binance margin will delist")) {
-               // console.log(`${catalog.catalogName}: ${article.title}`);
-               let article_tokens = article.title.toUpperCase().split("BINANCE MARGIN WILL DELIST")[1].split(" ON ")[0].replace("AND", ",").split(/,|&/).map(elem => elem.trim());
+
+            // Binance Will Delist...
+            if (article.title.toLowerCase().includes("binance margin will delist")) {
+               // Split then map elements
+               let article_tokens = article.title.replaceAll("USDⓈ-M", " ")
+                                                .replaceAll("COIN-M", " ")
+                                                .split(/[ ,&]+/).map(elem => elem.trim());
 			   
-			   let block_pairs = [];
-			   for (let i = 0; i < article_tokens.length; i++) {
-					if(article_tokens[i] && article_tokens[i].length <= 5){
-						console.log(`GetDelistToken() -> push: ${article_tokens[i]}`);
-						block_pairs.push(article_tokens[i]);
-					}
-			   }
+               let block_pairs = [];
+               for (let i = 0; i < article_tokens.length; i++) {
+                  if(article_tokens[i] && article_tokens[i].length > 1){
+                     let token = article_tokens[i];
+                     // The UpperCase is the delist token
+                     if (token.toUpperCase() === token && token !== token.toLowerCase()) {
+                        console.log(`GetDelistToken() -> Push: ${token}`);
+                        block_pairs.push(token);
+                     }                      
+                  }
+               }
                tokens.push(...block_pairs);
             }
+
+            // Binance Futures Will Delist...
+            if (article.title.toLowerCase().includes("binance futures will delist")) {
+               // Split then map elements
+               let article_tokens = article.title.replaceAll("USDⓈ-M", " ")
+                                                .replaceAll("COIN-M", " ")
+                                                .replaceAll("USDT", " ")
+                                                .replaceAll("BUSD", " ")
+                                                .replaceAll("USD", " ")
+                                                .split(/[ ,&]+/).map(elem => elem.trim());
+			   
+               let block_pairs = [];
+               for (let i = 0; i < article_tokens.length; i++) {
+                  if(article_tokens[i] && article_tokens[i].length > 1){
+                     let token = article_tokens[i];
+                     // The UpperCase is the delist token
+                     if (token.toUpperCase() === token && token !== token.toLowerCase()) {
+                        console.log(`GetDelistToken() -> Push: ${token}`);
+                        block_pairs.push(token);
+                     }                      
+                  }
+               }
+               tokens.push(...block_pairs);
+            }
+
+            // Delisting
+            if (article.title.toLowerCase().includes("delisting ")) {
+               // Split then map elements
+               let article_tokens = article.title.replaceAll("USDⓈ-M", " ")
+                                                .replaceAll("COIN-M", " ")
+                                                .replaceAll("USDT", " ")
+                                                .replaceAll("BUSD", " ")
+                                                .replaceAll("USD", " ")
+                                                .split(/[ ,&]+/).map(elem => elem.trim());
+			   
+               let block_pairs = [];
+               for (let i = 0; i < article_tokens.length; i++) {
+                  if(article_tokens[i] && article_tokens[i].length > 1){
+                     let token = article_tokens[i];
+                     // The UpperCase is the delist token
+                     if (token.toUpperCase() === token && token !== token.toLowerCase()) {
+                        console.log(`GetDelistToken() -> Push: ${token}`);
+                        block_pairs.push(token);
+                     }                      
+                  }
+               }
+               tokens.push(...block_pairs);
+            }
+
          }
       }
    }catch(e) {
