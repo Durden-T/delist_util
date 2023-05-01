@@ -39,7 +39,7 @@ async function TestInstance(instance) {
 async function GetDelistTokens() {
    let tokens = [];
    try {
-      let req = await fetch("https://www.binance.com/bapi/composite/v1/public/cms/article/list/query?type=1&pageNo=1&pageSize=30");
+      let req = await fetch("https://www.binance.com/bapi/composite/v1/public/cms/article/list/query?type=1&pageNo=1&pageSize=20&catalogId=161");
       let news = await req.json();
       let catalogs = news.data.catalogs;
       for (let i = 0; i < catalogs.length; i++) {
