@@ -42,7 +42,7 @@ async function GetDelistTokens() {
       let req = await fetch("https://www.binance.com/bapi/composite/v1/public/cms/article/list/query?type=1&pageNo=1&pageSize=20&catalogId=161");
       let news = await req.json();
       let catalogs = news.data.catalogs;
-      let time_limit = new Date().getTime()-(7 * 24 * 60 * 60 * 1000);
+      let time_limit = new Date().getTime()-(8 * 24 * 60 * 60 * 1000);
       for (let i = 0; i < catalogs.length; i++) {
          let catalog = catalogs[i];
          for (let j = 0; j < catalog.articles.length; j++) {
