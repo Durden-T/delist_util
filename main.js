@@ -42,12 +42,15 @@ async function GetDelistTokens() {
       let req = await fetch("https://www.binance.com/bapi/composite/v1/public/cms/article/list/query?type=1&pageNo=1&pageSize=20&catalogId=161");
       let news = await req.json();
       let catalogs = news.data.catalogs;
+      time_limit = new Date().getTime()-(7 * 24 * 60 * 60 * 1000);
       for (let i = 0; i < catalogs.length; i++) {
          let catalog = catalogs[i];
          for (let j = 0; j < catalog.articles.length; j++) {
             // Get titile content
             let article = catalog.articles[j];
-
+	    if (article.releaseDate < time_limit) {
+	    	continue
+	    }
             // Binance Will Delist...
             if (article.title.toLowerCase().includes("binance will delist")) {
                // Split then map elements
@@ -69,7 +72,7 @@ async function GetDelistTokens() {
                tokens.push(...block_pairs);
             }
 
-            // Binance Will Delist...
+            // Binance Margin Will Delist...
             if (article.title.toLowerCase().includes("binance margin will delist")) {
                // Split then map elements
                let article_tokens = article.title.replaceAll("USDⓈ-M", " ")
